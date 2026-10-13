@@ -1,11 +1,12 @@
 import { CaseStudyData } from '../types';
 
-// SVG Data URIs generated for self-contained visual previews
-const KAWA_COVER = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none"><rect width="1200" height="800" fill="%23F5F1E8"/><rect x="80" y="80" width="1040" height="640" border="1" stroke="%23171717" stroke-width="2" fill="none"/><line x1="80" y1="240" x2="1120" y2="240" stroke="%23171717" stroke-width="1.5"/><line x1="480" y1="240" x2="480" y2="720" stroke="%23171717" stroke-width="1.5"/><text x="120" y="180" font-family="Georgia, serif" font-size="64" font-style="italic" fill="%230000FF">Maison Atelier</text><text x="120" y="210" font-family="monospace" font-size="14" letter-spacing="4" fill="%23171717">SPECIALTY ROASTERY %26 BRAND SYSTEM</text><circle cx="800" cy="480" r="140" stroke="%230000FF" stroke-width="3" fill="none"/><circle cx="800" cy="480" r="80" stroke="%23171717" stroke-width="1.5" stroke-dasharray="6 6" fill="none"/><text x="520" y="320" font-family="sans-serif" font-size="24" font-weight="600" fill="%23171717">01 / BRAND IDENTITY %26 WEB FLAGSHIP</text><text x="520" y="360" font-family="sans-serif" font-size="16" fill="%23666666">Identity Design • Custom Typography • React Flagship</text><rect x="120" y="300" width="300" height="360" fill="%23171717"/><text x="150" y="480" font-family="serif" font-size="36" fill="%23F5F1E8">M.A 2026</text></svg>`;
+// Encode the entire SVG; ampersands in SVG text must be valid XML.
+const svgImage = (svg: string) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+const MAISON_COVER = svgImage(`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none"><rect width="1200" height="800" fill="#F5F1E8"/><rect x="80" y="80" width="1040" height="640" border="1" stroke="#171717" stroke-width="2" fill="none"/><line x1="80" y1="240" x2="1120" y2="240" stroke="#171717" stroke-width="1.5"/><line x1="480" y1="240" x2="480" y2="720" stroke="#171717" stroke-width="1.5"/><text x="120" y="180" font-family="Georgia, serif" font-size="64" font-style="italic" fill="#0000FF">Maison Atelier</text><text x="120" y="210" font-family="monospace" font-size="14" letter-spacing="4" fill="#171717">SPECIALTY ROASTERY &amp; BRAND SYSTEM</text><circle cx="800" cy="520" r="110" stroke="#0000FF" stroke-width="3" fill="none"/><circle cx="800" cy="520" r="64" stroke="#171717" stroke-width="1.5" stroke-dasharray="6 6" fill="none"/><text x="520" y="320" font-family="sans-serif" font-size="24" font-weight="600" fill="#171717">01 / BRAND IDENTITY &amp; WEB FLAGSHIP</text><text x="520" y="360" font-family="sans-serif" font-size="16" fill="#666666">Identity Design • Custom Typography • React Flagship</text><rect x="120" y="300" width="300" height="360" fill="#171717"/><text x="150" y="480" font-family="serif" font-size="36" fill="#F5F1E8">M.A 2026</text></svg>`);
 
-const VORTEX_COVER = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none"><rect width="1200" height="800" fill="%23171717"/><grid x="0" y="0" width="1200" height="800" fill="none"/><path d="M0 160H1200M0 320H1200M0 480H1200M0 640H1200M240 0V800M480 0V800M720 0V800M960 0V800" stroke="%23262626" stroke-width="1"/><rect x="120" y="120" width="960" height="560" fill="%230A0A0A" stroke="%230000FF" stroke-width="2"/><rect x="120" y="120" width="960" height="40" fill="%231A1A1A" stroke="%23262626" stroke-width="1"/><circle cx="150" cy="140" r="6" fill="%23FF5F56"/><circle cx="170" cy="140" r="6" fill="%23FFBD2E"/><circle cx="190" cy="140" r="6" fill="%2327C93F"/><text x="220" y="145" font-family="monospace" font-size="12" fill="%23888888">vortex-os // telemetry-node-01</text><text x="180" y="240" font-family="sans-serif" font-size="48" font-weight="700" fill="%23FFFFFF">VORTEX <tspan fill="%230000FF">OS</tspan></text><text x="180" y="280" font-family="monospace" font-size="16" fill="%230000FF">&gt; Real-Time Data Pipeline Infrastructure</text><rect x="180" y="340" width="380" height="260" fill="%23141414" stroke="%23333333"/><text x="210" y="390" font-family="monospace" font-size="14" fill="%230000FF">$ vortex deploy --prod</text><text x="210" y="420" font-family="monospace" font-size="14" fill="%23888888">✔ Engine compiled (14ms)</text><text x="210" y="450" font-family="monospace" font-size="14" fill="%23888888">✔ Edge Nodes Synced [EU/NA/AF]</text><rect x="600" y="340" width="420" height="260" fill="%23141414" stroke="%23333333"/><path d="M630 520 L700 440 L780 480 L860 380 L980 410" stroke="%230000FF" stroke-width="3" fill="none"/><circle cx="860" cy="380" r="5" fill="%23FFFFFF"/></svg>`;
+const VORTEX_COVER = svgImage(`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none"><rect width="1200" height="800" fill="#171717"/><path d="M0 160H1200M0 320H1200M0 480H1200M0 640H1200M240 0V800M480 0V800M720 0V800M960 0V800" stroke="#262626" stroke-width="1"/><rect x="120" y="120" width="960" height="560" fill="#0A0A0A" stroke="#6978FF" stroke-width="2"/><rect x="120" y="120" width="960" height="40" fill="#1A1A1A" stroke="#262626" stroke-width="1"/><circle cx="150" cy="140" r="6" fill="#FF5F56"/><circle cx="170" cy="140" r="6" fill="#FFBD2E"/><circle cx="190" cy="140" r="6" fill="#27C93F"/><text x="220" y="145" font-family="monospace" font-size="12" fill="#888888">vortex-os // telemetry-node-01</text><text x="180" y="240" font-family="sans-serif" font-size="48" font-weight="700" fill="#FFFFFF">VORTEX <tspan fill="#A3ADFF">OS</tspan></text><text x="180" y="280" font-family="monospace" font-size="16" fill="#A3ADFF">&gt; Real-Time Data Pipeline Infrastructure</text><rect x="180" y="340" width="380" height="260" fill="#141414" stroke="#333333"/><text x="210" y="390" font-family="monospace" font-size="14" fill="#A3ADFF">$ vortex deploy --prod</text><text x="210" y="420" font-family="monospace" font-size="14" fill="#888888">✔ Engine compiled (14ms)</text><text x="210" y="450" font-family="monospace" font-size="14" fill="#888888">✔ Edge Nodes Synced [EU/NA/AF]</text><rect x="600" y="340" width="420" height="260" fill="#141414" stroke="#333333"/><path d="M630 520 L700 440 L780 480 L860 380 L980 410" stroke="#6978FF" stroke-width="3" fill="none"/><circle cx="860" cy="380" r="5" fill="#FFFFFF"/></svg>`);
 
-const ECHOES_COVER = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none"><rect width="1200" height="800" fill="%23FFFFFF"/><rect x="40" y="40" width="1120" height="720" stroke="%23171717" stroke-width="3" fill="none"/><line x1="40" y1="200" x2="1160" y2="200" stroke="%23171717" stroke-width="2"/><line x1="600" y1="40" x2="600" y2="760" stroke="%23171717" stroke-width="2"/><text x="80" y="140" font-family="Georgia, serif" font-size="80" font-weight="bold" fill="%23171717">ECHOES OF</text><text x="640" y="140" font-family="Georgia, serif" font-size="80" font-style="italic" fill="%230000FF">MODERNISM</text><rect x="80" y="240" width="480" height="460" fill="%230000FF"/><text x="120" y="320" font-family="monospace" font-size="16" fill="%23FFFFFF">EXHIBITION 2026 // TRIENNALE</text><text x="120" y="650" font-family="sans-serif" font-size="64" font-weight="900" fill="%23FFFFFF">01 — 28</text><text x="120" y="680" font-family="monospace" font-size="14" fill="%23FFFFFF">OCTOBER / ALGIERS %26 PARIS</text><circle cx="880" cy="480" r="180" stroke="%23171717" stroke-width="4" fill="none"/><path d="M700 480 H1060 M880 300 V660" stroke="%23171717" stroke-width="1.5"/></svg>`;
+const ECHOES_COVER = svgImage(`<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none"><rect width="1200" height="800" fill="#FFFFFF"/><rect x="40" y="40" width="1120" height="720" stroke="#171717" stroke-width="3" fill="none"/><line x1="40" y1="200" x2="1160" y2="200" stroke="#171717" stroke-width="2"/><line x1="600" y1="40" x2="600" y2="760" stroke="#171717" stroke-width="2"/><text x="80" y="140" font-family="Georgia, serif" font-size="72" font-weight="bold" fill="#171717">ECHOES OF</text><text x="640" y="140" font-family="Georgia, serif" font-size="72" font-style="italic" fill="#0000FF">MODERNISM</text><rect x="80" y="240" width="480" height="460" fill="#0000FF"/><text x="120" y="320" font-family="monospace" font-size="16" fill="#FFFFFF">EXHIBITION 2026 // TRIENNALE</text><text x="120" y="650" font-family="sans-serif" font-size="64" font-weight="900" fill="#FFFFFF">01 — 28</text><text x="120" y="680" font-family="monospace" font-size="14" fill="#FFFFFF">OCTOBER / ALGIERS &amp; PARIS</text><circle cx="880" cy="480" r="180" stroke="#171717" stroke-width="4" fill="none"/><path d="M700 480 H1060 M880 300 V660" stroke="#171717" stroke-width="1.5"/></svg>`);
 
 export const PROJECTS_DATA: CaseStudyData[] = [
   {
@@ -18,10 +19,10 @@ export const PROJECTS_DATA: CaseStudyData[] = [
     role: ['Brand Identity', 'Visual Systems', 'Frontend Engineering'],
     discipline: 'Complete Identity & Web Flagship',
     surfaceTheme: 'paper',
-    coverImage: KAWA_COVER,
-    summary: 'A complete brand identity and editorial web flagship designed for an artisan coffee roastery. Combining tactile Swiss typography with crisp React e-commerce interactions.',
+    coverImage: MAISON_COVER,
+    summary: 'A complete brand identity and editorial web flagship designed for an artisan coffee roastery. Pairing expressive typography with considered digital interactions.',
     challenge: 'Specialty coffee brands often fall into generic rustic trends or hyper-minimalist cold corporate aesthetics. The challenge was to forge a warm, editorial luxury identity that translates seamlessly into a high-performance web experience.',
-    direction: 'Anchored in Swiss grid discipline and magazine-style typographic pacing. We selected a high-contrast serif for product names paired with an ultra-legible Swiss sans-serif for origin notes and processing metadata.',
+    direction: 'Warm paper tones and expressive product typography set the editorial direction. A high-contrast serif is paired with a readable sans-serif for origin notes and product details.',
     systemDescription: 'The visual system relies on a warm paper canvas (#F5F1E8) contrasting with ink black stroke grids (#171717) and an electric blue signature tag (#0000FF) denoting organic single-origin releases.',
     artifacts: [
       {
@@ -38,11 +39,11 @@ export const PROJECTS_DATA: CaseStudyData[] = [
       }
     ],
     responsiveShowcase: {
-      desktopUrl: KAWA_COVER,
-      mobileUrl: KAWA_COVER,
+      desktopUrl: MAISON_COVER,
+      mobileUrl: MAISON_COVER,
       description: 'Fully responsive React implementation ensuring fluid font scaling and seamless checkout drawer interactions across mobile and desktop viewports.'
     },
-    reflection: 'Building both the brand system and code base simultaneously prevented the usual friction between design intent and frontend feasibility. The site achieves a 99/100 Lighthouse performance score while delivering rich typography.',
+    reflection: 'Building both the brand system and code base simultaneously prevented the usual friction between design intent and frontend feasibility. The process keeps typography, responsive layouts, and component behavior part of the same design conversation.',
     githubUrl: 'https://github.com/samiben/maison-atelier'
   },
   {
@@ -58,7 +59,7 @@ export const PROJECTS_DATA: CaseStudyData[] = [
     coverImage: VORTEX_COVER,
     summary: 'An authoritative, dark-mode SaaS landing page for an edge data telemetry platform. Designed to convert engineering leads with interactive code playgrounds and live architecture previews.',
     challenge: 'Developer tools often suffer from cluttered interfaces, confusing technical jargon, and generic dark-mode templates. Vortex OS needed to communicate complex distributed edge node concepts in seconds.',
-    direction: 'We implemented a precision-engineered Swiss grid with dark ink background (#171717), glowing electric blue telemetry lines (#0000FF), and crisp monospaced code blocks.',
+    direction: 'A dark ink background, electric blue telemetry lines, and clear monospaced code blocks make technical information easier to scan.',
     systemDescription: 'Interactive tabbed code components, live node status indicators, and zero layout shift micro-animations powered by GSAP and Framer Motion.',
     artifacts: [
       {
@@ -71,7 +72,7 @@ export const PROJECTS_DATA: CaseStudyData[] = [
         title: 'Interactive Telemetry Playground',
         type: 'code',
         caption: 'React component rendering real-time CLI terminal output with simulated edge network latency.',
-        codeSnippet: `const TelemetryNode = ({ id, ping }: { id: string; ping: number }) => (\n  <div className="flex items-center justify-between border-swiss p-3">\n    <span className="font-mono text-sm">{id}</span>\n    <span className="text-electric-blue font-mono">{ping}ms</span>\n  </div>\n);`
+        codeSnippet: `const TelemetryNode = ({ id, ping }: { id: string; ping: number }) => (\n  <div className="flex items-center justify-between border border-white/20 p-3">\n    <span className="font-mono text-sm">{id}</span>\n    <span className="text-electric-blue font-mono">{ping}ms</span>\n  </div>\n);`
       }
     ],
     responsiveShowcase: {
@@ -79,7 +80,7 @@ export const PROJECTS_DATA: CaseStudyData[] = [
       mobileUrl: VORTEX_COVER,
       description: 'Optimized touch navigation with responsive code tabs and collapsible system architecture diagrams for mobile engineers.'
     },
-    reflection: 'Designing for developers requires hyper-accuracy in technical terminology and clean execution. The live CLI playground component increased mock conversion rates during prototype testing.',
+    reflection: 'Designing for developers requires hyper-accuracy in technical terminology and clean execution. The concept explores how code previews and concise product explanations can make a technical platform easier to understand.',
     liveUrl: 'https://vortex-os-demo.vercel.app'
   },
   {
@@ -95,7 +96,7 @@ export const PROJECTS_DATA: CaseStudyData[] = [
     coverImage: ECHOES_COVER,
     summary: 'A striking visual campaign celebrating 100 years of Mediterranean modernism. Spanning printed exhibition posters, billboard visuals, and an interactive digital pavilion catalog.',
     challenge: 'The campaign needed to bridge historical architectural rigor with contemporary digital visual culture, creating a cross-cultural aesthetic resonant in both North Africa and Europe.',
-    direction: 'Constructed around strict Swiss grid geometry, bold asymmetrical proportions, and pure electric blue color blocks colliding with crisp white surfaces.',
+    direction: 'Bold proportions and electric blue color blocks create a distinctive rhythm across crisp white surfaces. The composition carries from printed posters to digital layouts.',
     systemDescription: 'A custom typographic grid combining large scale serif display headlines with functional monospaced exhibition coordinates.',
     artifacts: [
       {

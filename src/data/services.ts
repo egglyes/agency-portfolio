@@ -4,13 +4,13 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: 'web-design-dev',
     number: '01',
-    title: 'Website Design & React Engineering',
-    summary: 'High-craft digital flagships, landing pages, and interactive web applications designed with visual distinction and built with modern React / Vite engineering.',
+    title: 'Website Design & Development',
+    summary: 'Distinctive websites and digital experiences, designed with care and built to work beautifully across screens.',
     deliverables: [
       'Art-Directed UX/UI Design in Figma',
       'Production-Ready React / TypeScript Codebase',
-      'GSAP & Framer Motion Micro-Animations',
-      'Responsive Optimization & 95+ Lighthouse Score',
+      'Considered Interactions & Micro-Animations',
+      'Responsive Layouts & Performance Optimization',
       'CMS Integration or Custom Headless Architecture'
     ],
     valueProposition: 'Bypasses the typical disconnect between designers and developers by delivering single-source vision from initial prototype to final production code.',
@@ -20,12 +20,12 @@ export const SERVICES_DATA: ServiceItem[] = [
     id: 'brand-identity',
     number: '02',
     title: 'Brand Identity & Visual Systems',
-    summary: 'Comprehensive visual identity systems rooted in Swiss modernism, intentional typography, and versatile digital brand guidelines.',
+    summary: 'Distinctive identities built around intentional typography, memorable marks, and a consistent visual language.',
     deliverables: [
       'Primary Logo, Wordmark & Secondary Marks',
-      'Typography & Custom Type Scale Tokens',
-      'Color Systems (Print & Screen Tokenization)',
-      'Digital Brand Guidelines & Component Tokens',
+      'Typography & Type Hierarchy',
+      'Color Systems for Print & Screen',
+      'Brand Guidelines & Digital Applications',
       'Real-world Collateral & Packaging Applications'
     ],
     valueProposition: 'Creates recognizable visual equity that establishes instant market credibility for new products or revitalizes existing businesses.',

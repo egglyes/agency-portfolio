@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import Lenis from 'lenis';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { SelectedWork } from './components/SelectedWork';
@@ -14,55 +13,57 @@ import { CaseStudyData } from './types';
 export const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<CaseStudyData | null>(null);
   const [activeSection, setActiveSection] = useState<string>('hero');
-  const [selectedServiceForContact, setSelectedServiceForContact] = useState<string | undefined>(undefined);
+  const [selectedServiceForContact, setSelectedServiceForContact] = useState<{ title: string; requestId: number } | null>(null);
 
-  // Initialize Lenis Smooth Scrolling for Editorial Luxury Pacing
+  // Keep navigation in sync with the section actually in view.
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true,
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
+    const updateSection = () => {
+      const sections = ['hero', 'work', 'about', 'services', 'contact']
+        .map(id => document.getElementById(id))
+        .filter((section): section is HTMLElement => !!section);
+      const threshold = window.innerHeight * 0.35;
+      const current = [...sections].reverse().find(section => section.getBoundingClientRect().top <= threshold);
+      setActiveSection(current?.id ?? 'hero');
+    };
+    updateSection();
+    window.addEventListener('scroll', updateSection, { passive: true });
+    window.addEventListener('resize', updateSection);
     return () => {
-      lenis.destroy();
+      window.removeEventListener('scroll', updateSection);
+      window.removeEventListener('resize', updateSection);
     };
   }, []);
 
   const handleNavigate = (sectionId: string) => {
     setActiveSection(sectionId);
+    const behavior = 'auto';
     if (sectionId === 'hero') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior });
     } else {
       const el = document.getElementById(sectionId);
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+        el.scrollIntoView({ behavior });
       }
     }
   };
 
   const handleInquireService = (serviceTitle: string) => {
-    setSelectedServiceForContact(serviceTitle);
+    setSelectedServiceForContact(previous => ({ title: serviceTitle, requestId: (previous?.requestId ?? 0) + 1 }));
     handleNavigate('contact');
   };
 
+  const closeProject = useCallback(() => setSelectedProject(null), []);
+
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-[#0000FF] selection:text-white">
-      {/* 1. Header Navigation */}
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Header 
         onNavigate={handleNavigate} 
         activeSection={activeSection} 
       />
 
       {/* 2. Main Content Sections */}
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <Hero 
           onExploreWork={() => handleNavigate('work')}
@@ -84,7 +85,8 @@ export const App: React.FC = () => {
 
         {/* Contact & Enquiry Section */}
         <ContactSection 
-          initialService={selectedServiceForContact}
+          initialService={selectedServiceForContact?.title}
+          inquiryRequest={selectedServiceForContact?.requestId}
         />
       </main>
 
@@ -96,7 +98,7 @@ export const App: React.FC = () => {
       {/* 4. Case Study Detail Modal Drawer */}
       <CaseStudyModal
         project={selectedProject}
-        onClose={() => setSelectedProject(null)}
+        onClose={closeProject}
         onSelectNext={(nextProj) => setSelectedProject(nextProj)}
         allProjects={PROJECTS_DATA}
       />

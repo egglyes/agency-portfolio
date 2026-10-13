@@ -1,78 +1,40 @@
 import React from 'react';
+import { SectionHeading } from './SectionHeading';
 
-export const AboutSection: React.FC = () => {
-  return (
-    <section id="about" className="section-padding surface-paper border-b border-[#171717]/10 relative">
-      <div className="site-container">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-[48px] sm:mb-[64px] pb-[24px] border-b border-[#171717]/15">
-          <div>
-            <span className="font-mono text-[13px] uppercase tracking-widest text-[#0000FF] mb-[8px] block font-semibold">
-              02 / ABOUT
-            </span>
-            <h2 className="font-serif text-[38px] sm:text-[48px] lg:text-[56px] text-[#171717] font-normal leading-tight">
-              Design & Technical Craft
-            </h2>
+const capabilities = [
+  ['Website design & development', 'React / Vite'],
+  ['Brand identity & logos', 'Visual systems'],
+  ['Graphic design', 'Print & digital'],
+  ['Social video & scripting', 'Reels / Shorts'],
+];
+
+export const AboutSection: React.FC = () => (
+  <section id="about" className="section-padding surface-paper">
+    <div className="site-container">
+      <SectionHeading number="02" label="About" title="One mind. Both sides.">
+        Design thinking and technical craft, connected from the start.
+      </SectionHeading>
+      <div className="site-grid items-start gap-y-12">
+        <div className="col-span-4 sm:col-span-6 lg:col-span-7 lg:pr-12">
+          <h3 className="font-serif text-[clamp(28px,3vw,40px)] leading-[1.2] max-w-[28ch]">Good design deserves an equally thoughtful build.</h3>
+          <div className="mt-6 space-y-5 text-[16px] leading-[1.8] text-ink/75 max-w-[56ch]">
+            <p>I’m Sami Ben, a designer and developer based in Algiers. My practice brings together brand identity, website design and development, graphic design, and social media video.</p>
+            <p>Working across design and engineering means the details survive the handoff: the typography, the interactions, and the feeling that makes a brand its own.</p>
           </div>
-          <p className="font-sans text-[15px] sm:text-[16px] text-[#171717]/75 mt-[16px] md:mt-0 max-w-[380px] leading-relaxed">
-            Combining visual judgment with technical implementation to deliver complete digital solutions.
-          </p>
         </div>
-
-        {/* 12-Column Grid Layout */}
-        <div className="site-grid">
-          {/* Left Column: Intro & Approach */}
-          <div className="col-span-4 sm:col-span-6 lg:col-span-7 space-y-[24px]">
-            <h3 className="font-serif text-[28px] sm:text-[36px] text-[#171717] leading-snug font-normal">
-              "I build complete creative solutions, combining brand design with modern frontend development."
-            </h3>
-
-            <p className="font-sans text-[#171717]/85 text-[17px] sm:text-[18px] leading-[1.65] font-normal">
-              I am <strong className="font-semibold text-[#171717]">Sami Ben</strong> — a designer and developer based in Algiers. My work spans website design and development, brand identity systems, graphic design, and social media video editing & scripting.
-            </p>
-
-            <p className="font-sans text-[#171717]/85 text-[17px] sm:text-[18px] leading-[1.65] font-normal">
-              By working across both visual design and engineering, I ensure that creative intent is preserved cleanly in production, creating digital experiences and media that perform reliably.
-            </p>
-
-            <div className="p-[24px] bg-[#171717]/5 border border-[#171717]/15 mt-[32px]">
-              <span className="font-mono text-[12px] text-[#0000FF] font-semibold uppercase tracking-wider block mb-[8px]">
-                CREDIBILITY & HONESTY
-              </span>
-              <p className="font-sans text-[14px] sm:text-[15px] text-[#171717]/80 leading-relaxed">
-                Self-initiated projects are clearly identified. I do not invent fake client names, fabricated metrics, or synthetic awards.
-              </p>
-            </div>
-          </div>
-
-          {/* Right Column: Services & Capabilities Grid */}
-          <div className="col-span-4 sm:col-span-6 lg:col-span-5 space-y-[24px]">
-            <div className="border border-[#171717]/15 bg-white p-[32px] sm:p-[36px]">
-              <span className="font-mono text-[12px] text-[#0000FF] font-semibold uppercase tracking-wider block mb-[20px] pb-[10px] border-b border-[#171717]/10">
-                // CORE CAPABILITIES
-              </span>
-              <ul className="space-y-[14px] font-mono text-[13px] sm:text-[14px] text-[#171717]">
-                <li className="flex items-center justify-between pb-[10px] border-b border-neutral-200">
-                  <span className="font-medium">WEBSITE DESIGN & DEV</span>
-                  <span className="font-semibold text-[#0000FF]">REACT / VITE</span>
-                </li>
-                <li className="flex items-center justify-between pb-[10px] border-b border-neutral-200">
-                  <span className="font-medium">BRAND IDENTITY & LOGOS</span>
-                  <span className="font-semibold text-[#0000FF]">SYSTEMS</span>
-                </li>
-                <li className="flex items-center justify-between pb-[10px] border-b border-neutral-200">
-                  <span className="font-medium">GRAPHIC DESIGN</span>
-                  <span className="font-semibold text-[#0000FF]">PRINT & DIGITAL</span>
-                </li>
-                <li className="flex items-center justify-between">
-                  <span className="font-medium">SOCIAL VIDEO & SCRIPTING</span>
-                  <span className="font-semibold text-[#0000FF]">REELS / SHORTS</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div className="col-span-4 sm:col-span-6 lg:col-span-5">
+          <span className="eyebrow mb-4">Across disciplines</span>
+          <ul className="border-t border-ink/20">
+            {capabilities.map(([title, detail]) => (
+              <li key={title} className="py-5 border-b border-ink/15 flex flex-wrap items-center justify-between gap-2">
+                <span className="text-[14px] font-medium">{title}</span>
+                <span className="font-mono text-[10px] accent">{detail}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-[12px] leading-relaxed text-ink/60">Selected work includes self-initiated projects, identified in each case study.</p>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
